@@ -53,6 +53,38 @@ header h1.title-site {
 div.contenido {
     padding: 14px 30px;
     margin-bottom: 55px;
+
+}
+
+div.contenido h2{
+    text-align: center;
+}
+div.contenido h3, ul{
+    float: none;
+}
+
+div.integrante ul{
+    list-style:none;
+    text-decoration:none;
+    margin-top: 10%;
+    font-size:2em;
+    font-weight:bold;
+    text-align:center;    
+}
+
+
+
+div.alumno img{
+    margin-top: 5%;
+    width: 86px;
+    height: 118px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+div.alumno h3{
+    text-align: center;
 }
 
 article h2{
