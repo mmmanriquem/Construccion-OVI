@@ -51,13 +51,13 @@ background-color: #e95420;
 footer div.footer-top>div{
 padding: 8px 0px;
 }
-footer div.col-md-4>ul{
+footer div.col-md-8>ul{
 list-style-type: none;
 }
-footer div.col-md-4>ul>li{
+footer div.col-md-8>ul>li{
 float: left;
 }
-footer div.col-md-4>ul>li>a {
+footer div.col-md-8>ul>li>a {
 font-size: 25px;
 display: block;
 color: white;
@@ -66,7 +66,7 @@ padding: 16px;
 text-decoration: none;
 color: white;
 }
-footer div.col-md-4>ul>li>a:hover {
+footer div.col-md-8>ul>li>a:hover {
 opacity: 0.8;
 -moz-transform: scaleX(-1);
 -o-transform: scaleX(-1);
