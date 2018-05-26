@@ -1,46 +1,83 @@
 @media (min-width: 768px) {
-		.title-web-movile {
-			display: none !important;
-		}
-	}
-	@media (max-width: 768px) {
-	    .title-web {
-			display: none !important;
-	    }
-	}
-	table.integrantes td.text-primary{
-		font-weight: bold;
-	}
-	header>div.header-top{
-		background-image: url(../img/background-header.jpg);
-	}
-	table.integrantes td.img-header{
-		background-color: rgba(233,84,32, 1);
-	}
-	table.integrantes td.img-header img{
-		height: 90px;
-		width: 72px;
-		padding: 8px 0px;
-	}
-	div.img-banner{
-		height: 120px;
-		text-align: center;
-	}
-	div.img-banner img{
-		padding: 20px;
-	}
-	div.title-web{
-		height: 120px;
-		display: table;
-		text-align: center;
-	}
-	div.title-web p{
-		display: table-cell;
-		vertical-align: middle;
-		font-size: 35px;
-		color: rgb(0,96,136);
-		font-family: 'Play', sans-serif;
-	}
-	div.container div.panel-body{
-		overflow: hidden;
-	}
+.title-web-movile {
+display: none !important;
+}
+}
+@media (max-width: 768px) {
+.title-web {
+display: none !important;
+}
+}
+table.integrantes td.text-primary{
+font-weight: bold;
+}
+header>div.header-top{
+background-image: url(../img/background-header.jpg);
+}
+table.integrantes td.img-header{
+background-color: rgba(233,84,32, 1);
+}
+table.integrantes td.img-header img{
+height: 90px;
+width: 72px;
+padding: 8px 0px;
+}
+div.img-banner{
+height: 120px;
+text-align: center;
+}
+div.img-banner img{
+padding: 20px;
+}
+div.title-web{
+height: 120px;
+display: table;
+text-align: center;
+}
+div.title-web p{
+display: table-cell;
+vertical-align: middle;
+font-size: 35px;
+color: rgb(0,96,136);
+font-family: 'Play', sans-serif;
+}
+footer{
+max-width: 100%;
+overflow: hidden;
+}
+footer div.footer-top{
+background-color: #e95420;
+}
+footer div.footer-top>div{
+padding: 8px 0px;
+}
+footer div.col-md-4>ul{
+list-style-type: none;
+}
+footer div.col-md-4>ul>li{
+float: left;
+}
+footer div.col-md-4>ul>li>a {
+font-size: 25px;
+display: block;
+color: white;
+text-align: center;
+padding: 16px;
+text-decoration: none;
+color: white;
+}
+footer div.col-md-4>ul>li>a:hover {
+opacity: 0.8;
+-moz-transform: scaleX(-1);
+-o-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
+filter: FlipH;
+}
+footer div.footer-bottom{
+background-color: #003B53;
+}
+footer div.footer-bottom div.col-md-12{
+color: white;
+padding-top: 5px;
+}
