@@ -41,3 +41,6 @@
 		color: rgb(0,96,136);
 		font-family: 'Play', sans-serif;
 	}
+	div.container div.panel-body{
+		overflow: hidden;
+	}
