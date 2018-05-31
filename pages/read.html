@@ -9,7 +9,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/theme/icecoder.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/javascript/javascript.min.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 img-banner">
-						<img src="img/logo.png" height="100%">
+						<img src="../img/logo.png" height="100%">
 					</div>
 					<div class="col-md-10 title-web">
 						<p>Programación WEB <i class="fa fa-code"></i></p>
@@ -42,27 +42,27 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="menu">
 			      <ul class="nav navbar-nav">
-			        <li><a href="index.html">Principal</a></li>
+			        <li><a href="../index.html">Principal</a></li>
 			        <li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Primeros pasos
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="pages/environment.html">Preparación del entorno</a></li>
+				          <li><a href="environment.html">Preparación del entorno</a></li>
 				        </ul>
 				    </li>
 				    <li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funciones
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="pages/connection.html">Conexión a base a la DB</a></li>
-				          <li><a href="pages/create.html">Creación de registros en la BD</a></li>
-				          <li><a href="pages/read.html">Lectura de registros de la BD</a></li>
-				          <li><a href="pages/update.html">Modificación de registros en la DB</a></li>
-				          <li><a href="pages/delete.html">Eliminación de registros de la DB</a></li>
+				          <li><a href="connection.html">Conexión a base a la DB</a></li>
+				          <li><a href="create.html">Creación de registros en la BD</a></li>
+				          <li><a href="read.html">Lectura de registros de la BD</a></li>
+				          <li><a href="update.html">Modificación de registros en la DB</a></li>
+				          <li><a href="delete.html">Eliminación de registros de la DB</a></li>
 				        </ul>
 				    </li>
-			        <li><a href="actividades.html">Actividades</a></li>
-			        <li><a href="about.html">Acerca de nosotros</a></li>
+			        <li><a href="#">Actividades</a></li>
+			        <li><a href="../about.html">Acerca de nosotros</a></li>
 			      </ul>
 			    </div>
 			</div>
@@ -77,7 +77,50 @@
 				  <div class="panel-body">
 				  	<div class="row">
 				  		<div class="col-md-12">
-							Texto
+							<h3 class="text-primary">Leer registros en la base de datos </h3>
+							<p>Pasos para leer registros existentes en una base de datos:</p>
+							<p>
+								<ol>
+									<li>Haber establecido conexion con el servidor MySQL.<br>Si no ha realizado la conexión puede revisar el siguiente material - <a href="connection.html">Conexión a una DB</a>.</li>
+									<li>Para el siguiente ejercicio tenemos 3 registros previamente insertados en la tabla <span class="codeline">usuarios</span>
+									<br>
+									<textarea id="code1">
++----+------------+---------+-----------+--------------------+------------+---------+--------+
+| id | cc         | nombres | apellidos | correo             | celular    | ciudad  | sexo   |
++----+------------+---------+-----------+--------------------+------------+---------+--------+
+|  1 |   12223212 | Carlos  | Ramirez   | carlos@ramirez.com | 3125044478 | Bogota  | Hombre |
+|  2 |   12068889 | Marcela | Perez     | marce@perez.com    | 3172558988 | Armenia | Mujer  |
+|  3 | 	 21715148 | Sofia   | Martinez  | soffi@martinez.com |  310916374 | Cucuta  | Mujer  |
++----+------------+---------+-----------+--------------------+------------+---------+--------+
+									</textarea>
+									</li>
+									<li>Para listar y leer los registros de una tabla es necesario ejecutar la consulta <span class="codeline">SELECT * FROM tabla_nombre;</span></li>
+									<li>Ahora solo tenemos que codificar la <span class="codeline">query</span> haciendo uso de <span class="codeline">PDO</span>
+									<br>
+									<textarea id="code2">
+$sentencia = $db->prepare("SELECT * FROM usuarios");
+$sentencia->execute();</textarea>
+									</li>
+									<li>Una vez tengamos codificada la sentencia o consulta, tenemos que recorrer los resultados con un <span class="codeline">foreach</span>
+									<br>
+									<textarea id="code3">
+<?php foreach ($sentencia as $usuario): ?>
+	<p>Registro No.<?php echo $usuario['id']; ?></p>
+	<ul>
+		<li><?php echo $usuario['cc']; ?></li>
+		<li><?php echo $usuario['nombres']; ?></li>
+		<li><?php echo $usuario['apellidos']; ?></li>
+		<li><?php echo $usuario['correo']; ?></li>
+		<li><?php echo $usuario['celular']; ?></li>
+		<li><?php echo $usuario['ciudad']; ?></li>
+		<li><?php echo $usuario['sexo']; ?></li>
+	</ul>
+	<hr>
+<?php endforeach ?></textarea>
+									</li>
+								</ol>
+								<p>Con esto ya estariamos leyendo y visualizando los registros en la tabla usuarios de la base de datos, dichos datos pueden organizarsen de la manera en que queramos, en este caso fue organizado en un listado, pero podriamos ponerlo en una tabla o en un parrafo.</p>
+							</p>
 				  		</div>
 				  	</div>
 				  </div>
@@ -125,5 +168,22 @@
 			</div>
 		</div>
 	</footer>
+	<script>
+		var editor = CodeMirror.fromTextArea(document.getElementById("code1"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+	</script>
 </body>
 </html>

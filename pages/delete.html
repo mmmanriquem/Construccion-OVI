@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Programación WEB - UNAD</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/theme/icecoder.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 img-banner">
+						<img src="../img/logo.png" height="100%">
+					</div>
+					<div class="col-md-10 title-web">
+						<p>Programación WEB <i class="fa fa-code"></i></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span> 
+			      </button>
+			      <a class="navbar-brand text-center title-web-movile" href="#">Programación WEB <i class="fa fa-code"></i></a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="menu">
+			      <ul class="nav navbar-nav">
+			        <li><a href="../index.html">Principal</a></li>
+			        <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Primeros pasos
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="environment.html">Preparación del entorno</a></li>
+				        </ul>
+				    </li>
+				    <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funciones
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="connection.html">Conexión a base a la DB</a></li>
+				          <li><a href="create.html">Creación de registros en la BD</a></li>
+				          <li><a href="read.html">Lectura de registros de la BD</a></li>
+				          <li><a href="update.html">Modificación de registros en la DB</a></li>
+				          <li><a href="delete.html">Eliminación de registros de la DB</a></li>
+				        </ul>
+				    </li>
+			        <li><a href="#">Actividades</a></li>
+			        <li><a href="../about.html">Acerca de nosotros</a></li>
+			      </ul>
+			    </div>
+			</div>
+		</nav>
+	</header>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Eliminación de Registros de la Base de Datos </div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-12">
+							Procedimiento: 
+							<p>
+							1.	Se debe indicar el procedimiento de conexión de la base de datos, con los datos correspondientes, Usuario, Contraseña y Servidor, para el ejercicio se utiliza el siguiente código: 
+							</p>
+							<textarea class="code">
+<?php
+	
+		$conexion=mysqli_connect("localhost","root","","unad") or
+    die("Problemas con la conexión");
+?>
+								</textarea>
+													
+							<p>
+							2.	Se crea el formulario para visualizar, creando los campos para insertar información y los botones para los procedimiento (Buscar y eliminar)
+							</p>
+							
+<p>
+							<textarea class="code"  rows="5" cols="80">
+<div >
+<form action="index.php" method="post">
+Ingrese Cedula:
+<input type="text" name="cc" ><br>
+Ingrese Nombre:
+<input type="text" name="nombre" ><br>
+Ingrese Apellido:
+<input type="text" name="apellido" ><br>
+Ingrese Correo:
+<input type="text" name="correo" ><br>
+Ingrese Celular:
+<input type="text" name="celular"><br>
+Ingrese Ciudad:
+<input type="text" name="ciudad" ><br>
+Ingrese Sexo:
+<input type="text" name="sexo" ><br>
+<input type="submit" name="Guardar" value="Guardar" >
+<input type="submit" name="Buscar" value="Buscar" >
+<input type="submit" name="Eliminar" value="Eliminar" >
+<input type="submit" name="Modificar" value="Modificar" >
+</div> 
+							</textarea>
+								</p>
+							<p>
+							3.	Se genera la consulta de la base de datos, indicando cualquiera de los datos solicitados (CC, Nombre, Apellido, Correo, Celular, Ciudad, Sexo) como se indica en el siguiente procedimiento: 
+							</p>
+							<p>
+						<tr>
+						<td colspan="1" class="img-header">
+							<img src="img/eliminacion.jpg" class="img" width="800" height="500">
+						</td>
+					</tr>
+							</p>
+
+							<p>
+							<textarea class="code">
+<?php
+
+
+		$conexion=mysqli_connect("localhost","root","","unad") or
+    die("Problemas con la conexión");
+if(isset($_POST['Buscar'])){
+
+
+  $registros=mysqli_query($conexion, "select Id,cc,Nombre,Apellido,Correo,Celular,Ciudad,Sexo from usuarios
+                        where cc='$_REQUEST[cc]' or Nombre='$_REQUEST[nombre]' or Correo='$_REQUEST[correo]' or Celular='$_REQUEST[celular]'or Sexo='$_REQUEST[sexo]'")or
+  die("Problemas en el select:".mysqli_error($conexion));
+if ($reg=mysqli_fetch_array($registros))
+
+{
+echo '<input type="text" name="id" value="'.$reg[0].'">';
+echo '<input type="text" name="cc" value="'.$reg[1].'">';
+echo '<input type="text" name="nombre" value="'.$reg[2].'">';
+echo '<input type="text" name="apellido" value="'.$reg[3].'">';
+echo '<input type="text" name="correo" value="'.$reg[4].'">';
+echo '<input type="text" name="celular" value="'.$reg[5].'">';
+echo '<input type="text" name="ciudad" value="'.$reg[6].'">';
+echo '<input type="text" name="sexo" value="'.$reg[7].'">';
+
+mysqli_close($conexion);
+}
+}
+?>
+							</textarea>
+							</p>
+							<p>
+							4.	El código para procedimiento de eliminación permite, realizar la búsqueda inicial y posteriormente su eliminación: 
+							</p>
+							<p>
+							<textarea class="code">
+<?php
+
+
+		$conexion=mysqli_connect("localhost","root","","unad") or
+    die("Problemas con la conexión");
+
+if(isset($_POST['Eliminar'])){
+	mysqli_query($conexion,"delete from usuarios where Id='$_REQUEST[id]'") or
+    die("Problemas en el select:".mysqli_error($conexion));
+  echo "Se efectuó el borrado .";
+	}
+
+?>
+						</textarea>
+						</p>
+						<p>
+						<tr>
+						<td colspan="1" class="img-header">
+							<img src="img/borrado.jpg" class="img" width="800" height="500">
+						</td>
+					</tr>
+					</p>
+					<p>
+					Todo el procedimiento quedaría así para su verificación:
+					</p>
+					<p>
+					<textarea class="code">
+					<!DOCTYPE html>
+
+<head>
+
+	<meta charset="utf-8">	
+	
+	<script type="text/javascript" src="banner/funcionesJS.js"></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body onLoad="banner()">
+
+	
+
+<header id="encabezado" >
+
+		<hgroup>
+			<h1 id="title" style="width:700px"><a href="index.html" >Bases de datos en PHP
+</a> </h1>
+		</hgroup>
+		<img id="banner" src="" name="banner"  align="right"></img>
+	</header> 
+
+<div id="cuerpo">
+
+	<nav class="menu " >
+		<ul>
+			<li class="current"><a href="index.php">Inicio</a></li>
+			
+		</ul>
+	</nav>
+
+ <section id="contenido">
+
+	<article class="hentry">
+
+		<header class="entry-header">
+			
+<figure >
+	
+		</header>
+
+		<div >
+			<form action="index.php" method="post">
+			Ingrese Cedula:
+			<input type="text" name="cc" ><br>
+			Ingrese Nombre:
+			<input type="text" name="nombre" ><br>
+			Ingrese Apellido:
+			<input type="text" name="apellido" ><br>
+			Ingrese Correo:
+			<input type="text" name="correo" ><br>
+			Ingrese Celular:
+			<input type="text" name="celular"><br>
+			Ingrese Ciudad:
+			<input type="text" name="ciudad" ><br>
+			Ingrese Sexo:
+			<input type="text" name="sexo" ><br>
+
+			<input type="submit" name="Guardar" value="Guardar" >
+			<input type="submit" name="Buscar" value="Buscar" >
+			<input type="submit" name="Eliminar" value="Eliminar" >
+			<input type="submit" name="Modificar" value="Modificar" >
+		</div> 	
+
+<?php
+
+
+		$conexion=mysqli_connect("localhost","root","","unad") or
+    die("Problemas con la conexión");
+if(isset($_POST['Guardar'])) {
+	
+mysqli_query($conexion,"insert into usuarios(cc,Nombre,Apellido,Direccion,Celular,Ciudad,Sexo) values 
+                       ('$_REQUEST[cc]','$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[correo]','$_REQUEST[celular]','$_REQUEST[ciudad]')'$_REQUEST[sexo]',")
+  or die("Problemas en el select".mysqli_error($conexion));
+  echo "Registro Guardado.";
+  mysqli_close($conexion);
+}
+
+
+
+if(isset($_POST['Buscar'])){
+
+
+  $registros=mysqli_query($conexion, "select Id,cc,Nombre,Apellido,Correo,Celular,Ciudad,Sexo from usuarios
+                        where cc='$_REQUEST[cc]' or Nombre='$_REQUEST[nombre]' or Correo='$_REQUEST[correo]' or Celular='$_REQUEST[celular]'or Sexo='$_REQUEST[sexo]'")or
+  die("Problemas en el select:".mysqli_error($conexion));
+if ($reg=mysqli_fetch_array($registros))
+
+{
+
+
+	echo '<input type="text" name="id" value="'.$reg[0].'">';
+	echo '<input type="text" name="cc" value="'.$reg[1].'">';
+echo '<input type="text" name="nombre" value="'.$reg[2].'">';
+echo '<input type="text" name="apellido" value="'.$reg[3].'">';
+echo '<input type="text" name="correo" value="'.$reg[4].'">';
+echo '<input type="text" name="celular" value="'.$reg[5].'">';
+echo '<input type="text" name="ciudad" value="'.$reg[6].'">';
+echo '<input type="text" name="sexo" value="'.$reg[7].'">';
+
+mysqli_close($conexion);
+}
+}
+
+if(isset($_POST['Eliminar'])){
+	mysqli_query($conexion,"delete from usuarios where Id='$_REQUEST[id]'") or
+    die("Problemas en el select:".mysqli_error($conexion));
+  echo "Se efectuó el borrado .";
+	}
+?>
+
+		
+	</article>
+
+	
+	
+</section>
+
+
+</div> 
+	<footer id="footer" >
+		
+		<p>
+			© Copyright Todos los derechos reservados
+		</p>
+	</footer> 
+
+</body>
+</html>
+
+</textarea>
+
+
+
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Twitter UNAD</div>
+				  <div class="panel-body">
+					<div class="twitter">
+	                    <a class="twitter-timeline" data-height="400" href="https://twitter.com/UniversidadUNAD?ref_src=twsrc%5Etfw"></a>
+	                </div>
+				  </div>
+				</div>
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Visitas</div>
+				  <div class="panel-body">
+					<div id="visitas">
+						<center><a href="https://www.cerotec.net/estadisticas-120240/mmmanriquem.github.io" title="contador"><img src="https://www.cerotec.net/contador.php?t=9&s=5&i=120240"></a></center>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="footer-top">
+			<div class="container text-center">
+				<div class="col-md-8 col-md-offset-4">
+					<ul>
+						<li><a target="_blank" href="https://es-la.facebook.com/Universidad-Nacional-Abierta-y-a-Distancia-UNAD-285790428108305/"><i class="fa fa-facebook"></i></a></li>
+						<li><a target="_blank" href="https://twitter.com/universidadunad?lang=es"><i class="fa fa-twitter"></i></a></li>
+						<li><a target="_blank" href="https://www.youtube.com/user/universidadunad"><i class="fa fa-youtube"></i></a></li>
+						<li><a target="_blank" href="https://www.instagram.com/universidadunad/?hl=es-la"><i class="fa fa-instagram"></i></a></li>
+						<li><a target="_blank" href="https://www.unad.edu.co/"><i class="fa fa-globe"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="col-md-12 text-center">
+					<p>Copyright © 301122_9 UNAD 2018</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="../js/scripts.js"></script>
+</body>
+</html>

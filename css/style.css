@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 @media (min-width: 768px) {
 .title-web-movile {
 display: none !important;
@@ -80,4 +81,21 @@ background-color: #003B53;
 footer div.footer-bottom div.col-md-12{
 color: white;
 padding-top: 5px;
+}
+span.codeline{
+	font-family: 'Source Code Pro', monospace;
+	background-color: #EFEFEF;
+}
+ol>li{
+	margin-bottom: 10px;
+}
+div.col-md-9 div.panel-body{
+	overflow: hidden;
+}
+img.img-content{
+	max-width: 100%;
+}
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
 }

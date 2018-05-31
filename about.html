@@ -3,7 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="UTF-8">
-    <title>Desarrollo Web - UNAD</title>
+    <title>Programación WEB - UNAD</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/theme/icecoder.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/javascript/javascript.min.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,8 +15,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
-
-
 </head>
 <body>
 	<header>
@@ -23,7 +25,7 @@
 						<img src="img/logo.png" height="100%">
 					</div>
 					<div class="col-md-10 title-web">
-						<p>Introducción al desarrollo de software <i class="fa fa-code"></i></p>
+						<p>Programación WEB <i class="fa fa-code"></i></p>
 					</div>
 				</div>
 			</div>
@@ -36,47 +38,41 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span> 
 			      </button>
-			      <a class="navbar-brand text-center title-web-movile" href="#">Desarrollo de software <i class="fa fa-code"></i></a>
+			      <a class="navbar-brand text-center title-web-movile" href="#">Programación WEB <i class="fa fa-code"></i></a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="menu">
 			      <ul class="nav navbar-nav">
 			        <li><a href="index.html">Principal</a></li>
 			        <li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Unidad 1
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Primeros pasos
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="unidad1/paso1.html">Análisis de requisitos y especificación de una aplicación</a></li>
-				          <li><a href="unidad1/paso2.html">Fundamentos de Desarrollo de Sistemas</a></li>
-				          <li><a href="unidad1/paso3.html">Modelos de Desarrollo de Software</a></li>
-				          <li><a href="unidad1/paso4.html">Herramientas de Análisis y de Diseño</a></li>
-				          <li><a href="unidad1/paso5.html">Ciclo de Desarrollo de Software</a></li>
-				          <li><a href="unidad1/paso6.html">Modelo Analisis Ingenieria de Software</a></li>
-				          <li><a href="unidad1/paso7.html">Metodologias agiles para el desarrollo de software educativo</a></li>
-				          <li><a href="unidad1/paso8.html">Cómo realizar entrevistas eficaces para obtener requisitos de software</a></li>
+				          <li><a href="pages/environment.html">Preparación del entorno</a></li>
 				        </ul>
 				    </li>
 				    <li class="dropdown">
-				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Unidad 2
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funciones
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="unidad2/paso1.html">Modelado de sistemas software</a></li>
-				          <li><a href="unidad2/paso2.html">Modelamiento software</a></li>
-				          <li><a href="unidad2/paso3.html">Actividades del desarrollo de software</a></li>
-				          <li><a href="unidad2/paso4.html">Tecnicas de Modelado de Software</a></li>
-				          <li><a href="unidad2/paso5.html">Modelos de Desarrollo de Software</a></li>
-				          <li><a href="unidad2/paso6.html">Modelo Lineal</a></li>
-				          <li><a href="unidad2/paso7.html">Modelo en Cascada</a></li>
+				          <li><a href="pages/connection.html">Conexión a base a la DB</a></li>
+				          <li><a href="pages/create.html">Creación de registros en la BD</a></li>
+				          <li><a href="pages/read.html">Lectura de registros de la BD</a></li>
+				          <li><a href="pages/update.html">Modificación de registros en la DB</a></li>
+				          <li><a href="pages/delete.html">Eliminación de registros de la DB</a></li>
 				        </ul>
 				    </li>
-			        <li><a href="integrantes.html">Integrantes</a></li>
+			        <li><a href="#">Actividades</a></li>
+			        <li><a href="about.html">Acerca de nosotros</a></li>
 			      </ul>
 			    </div>
 			</div>
 		</nav>
 	</header>
 	<div class="container">
-		<h3 class="text-primary">Integrantes</h3>
+		<h3 class="text-primary">Acerca de nosotros</h3>
 		<hr>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed quasi nihil, ipsam reiciendis! Repudiandae at aliquam consequatur laboriosam commodi aperiam reiciendis sed fugit eveniet voluptatem error, similique vitae inventore aut deserunt vero facilis quae. Mollitia qui necessitatibus repellendus sit, quo hic! Rem autem molestias rerum assumenda saepe aliquam repellat itaque quos debitis repudiandae architecto iure sunt nihil, at sapiente dolores dolor, ex voluptatibus magni unde corporis asperiores quam adipisci minima. Harum cumque enim voluptas provident delectus eligendi necessitatibus, quis eaque.</p>
+		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<table width="100%" class="text-center table-hover table integrantes">

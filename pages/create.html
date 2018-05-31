@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Programación WEB - UNAD</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/codemirror.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/theme/icecoder.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.38.0/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/3/united/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 img-banner">
+						<img src="../img/logo.png" height="100%">
+					</div>
+					<div class="col-md-10 title-web">
+						<p>Programación WEB <i class="fa fa-code"></i></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span> 
+			      </button>
+			      <a class="navbar-brand text-center title-web-movile" href="#">Programación WEB <i class="fa fa-code"></i></a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="menu">
+			      <ul class="nav navbar-nav">
+			        <li><a href="../index.html">Principal</a></li>
+			        <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Primeros pasos
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="environment.html">Preparación del entorno</a></li>
+				        </ul>
+				    </li>
+				    <li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funciones
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><a href="connection.html">Conexión a base a la DB</a></li>
+				          <li><a href="create.html">Creación de registros en la BD</a></li>
+				          <li><a href="read.html">Lectura de registros de la BD</a></li>
+				          <li><a href="update.html">Modificación de registros en la DB</a></li>
+				          <li><a href="delete.html">Eliminación de registros de la DB</a></li>
+				        </ul>
+				    </li>
+			        <li><a href="#">Actividades</a></li>
+			        <li><a href="../about.html">Acerca de nosotros</a></li>
+			      </ul>
+			    </div>
+			</div>
+		</nav>
+	</header>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Programación WEB</div>
+				  <div class="panel-body">
+				  	<div class="row">
+				  		<div class="col-md-12">
+							<h3 class="text-primary">Insertar registros en la base de datos </h3>
+							<p>Pasos para insertar un registro en una base de datos:</p>
+							<p>
+								<ol>
+									<li>Haber establecido conexion con el servidor MySQL.<br>Si no ha realizado la conexión puede revisar el siguiente material - <a href="connection.html">Conexión a una DB</a>.</li>
+									<li>Crear un formulario html con los datos a insertar.
+									<br>
+									<textarea id="code1">
+<form action="insert.php" method="POST">
+	cc:<input type="number" name="cc"><br>
+	nombres:<input type="text" name="nombres"><br>
+	apellidos:<input type="text" name="apellidos"><br>
+	correo:<input type="email" name="correo"><br>
+	celular:<input type="number" name="celular"><br>
+	ciudad:<input type="text" name="ciudad"><br>
+	sexo:<input type="text" name="sexo"><br>
+	<input type="submit" value="Insertar registro">		
+</form></textarea>
+									</li>
+									<li>Recibir los datos enviados a través del formulario y almacenarlos en variables en el archivo insert.php
+									<br>
+									<textarea id="code2">
+$cc = $_POST['cc'];
+$nombres = $_POST['nombres'];
+$apellidos = $_POST['apellidos'];
+$correo = $_POST['correo'];
+$celular = $_POST['celular'];
+$ciudad = $_POST['ciudad'];
+$sexo = $_POST['sexo'];</textarea>
+									</li>
+									<li>Realizar el registro de los datos en la tabla usuarios de la base de datos <br>
+										<textarea id="code3">
+$sentencia = $db->prepare("INSERT INTO usuarios (cc, nombres, apellidos, correo, celular, ciudad, sexo) VALUES (:cc, :nombres, :apellidos, :correo, :celular, :ciudad, :sexo)");
+$sentencia->bindParam(':cc', $cc);
+$sentencia->bindParam(':nombres', $nombres);
+$sentencia->bindParam(':apellidos', $apellidos);
+$sentencia->bindParam(':correo', $correo);
+$sentencia->bindParam(':celular', $celular);
+$sentencia->bindParam(':ciudad', $ciudad);
+$sentencia->bindParam(':sexo', $sexo);
+$sentencia->execute();</textarea>
+									</li>
+									<li>Para validar si se realizo el <span class="codeline">INSERT</span> de los datos en la base de datos podemos hacerlo con la siguiente condicional, la cual validara si se ejecuta la Query.
+									<br>
+									<textarea id="code4">
+if($sentencia->execute()){
+	echo 'Se han insertado los datos con exito.';
+}else{
+	echo 'No se han insertado los datos.';
+}</textarea>
+									</li>
+								</ol>
+							</p>
+							<p>
+								El codigo final seria el siguiente:
+								<textarea id="code5">
+$sentencia = $db->prepare("INSERT INTO usuarios (cc, nombres, apellidos, correo, celular, ciudad, sexo) VALUES (:cc, :nombres, :apellidos, :correo, :celular, :ciudad, :sexo)");
+$sentencia->bindParam(':cc', $cc);
+$sentencia->bindParam(':nombres', $nombres);
+$sentencia->bindParam(':apellidos', $apellidos);
+$sentencia->bindParam(':correo', $correo);
+$sentencia->bindParam(':celular', $celular);
+$sentencia->bindParam(':ciudad', $ciudad);
+$sentencia->bindParam(':sexo', $sexo);
+if($sentencia->execute()){
+	echo 'Se han insertado los datos con exito.';
+}else{
+	echo 'No se han insertado los datos.';
+}</textarea>
+							</p>
+							<br>
+							<p>
+								<iframe width="100%" height="350" src="https://www.youtube.com/embed/RAbSA6Q-TF0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							</p>
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Twitter UNAD</div>
+				  <div class="panel-body">
+					<div class="twitter">
+	                    <a class="twitter-timeline" data-height="400" href="https://twitter.com/UniversidadUNAD?ref_src=twsrc%5Etfw"></a>
+	                </div>
+				  </div>
+				</div>
+				<div class="panel panel-primary">
+				  <div class="panel-heading text-center">Visitas</div>
+				  <div class="panel-body">
+					<div id="visitas">
+						<center><a href="https://www.cerotec.net/estadisticas-120240/mmmanriquem.github.io" title="contador"><img src="https://www.cerotec.net/contador.php?t=9&s=5&i=120240"></a></center>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="footer-top">
+			<div class="container text-center">
+				<div class="col-md-8 col-md-offset-4">
+					<ul>
+						<li><a target="_blank" href="https://es-la.facebook.com/Universidad-Nacional-Abierta-y-a-Distancia-UNAD-285790428108305/"><i class="fa fa-facebook"></i></a></li>
+						<li><a target="_blank" href="https://twitter.com/universidadunad?lang=es"><i class="fa fa-twitter"></i></a></li>
+						<li><a target="_blank" href="https://www.youtube.com/user/universidadunad"><i class="fa fa-youtube"></i></a></li>
+						<li><a target="_blank" href="https://www.instagram.com/universidadunad/?hl=es-la"><i class="fa fa-instagram"></i></a></li>
+						<li><a target="_blank" href="https://www.unad.edu.co/"><i class="fa fa-globe"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="col-md-12 text-center">
+					<p>Copyright © 301122_9 UNAD 2018</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script>
+		var editor = CodeMirror.fromTextArea(document.getElementById("code1"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code4"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code5"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+	</script>
+</body>
+</html>
