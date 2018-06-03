@@ -73,260 +73,43 @@
 		<div class="row">
 			<div class="col-md-9">
 				<div class="panel panel-primary">
-				  <div class="panel-heading text-center">Eliminación de Registros de la Base de Datos </div>
+				  <div class="panel-heading text-center">Programación WEB</div>
 				  <div class="panel-body">
 				  	<div class="row">
 				  		<div class="col-md-12">
-							Procedimiento: 
-							<p>
-							1.	Se debe indicar el procedimiento de conexión de la base de datos, con los datos correspondientes, Usuario, Contraseña y Servidor, para el ejercicio se utiliza el siguiente código: 
-							</p>
-							<textarea class="code">
-<?php
-	
-		$conexion=mysqli_connect("localhost","root","","unad") or
-    die("Problemas con la conexión");
-?>
-								</textarea>
-													
-							<p>
-							2.	Se crea el formulario para visualizar, creando los campos para insertar información y los botones para los procedimiento (Buscar y eliminar)
-							</p>
-							
-<p>
-							<textarea class="code"  rows="5" cols="80">
-<div >
-<form action="index.php" method="post">
-Ingrese Cedula:
-<input type="text" name="cc" ><br>
-Ingrese Nombre:
-<input type="text" name="nombre" ><br>
-Ingrese Apellido:
-<input type="text" name="apellido" ><br>
-Ingrese Correo:
-<input type="text" name="correo" ><br>
-Ingrese Celular:
-<input type="text" name="celular"><br>
-Ingrese Ciudad:
-<input type="text" name="ciudad" ><br>
-Ingrese Sexo:
-<input type="text" name="sexo" ><br>
-<input type="submit" name="Guardar" value="Guardar" >
-<input type="submit" name="Buscar" value="Buscar" >
-<input type="submit" name="Eliminar" value="Eliminar" >
-<input type="submit" name="Modificar" value="Modificar" >
-</div> 
-							</textarea>
-								</p>
-							<p>
-							3.	Se genera la consulta de la base de datos, indicando cualquiera de los datos solicitados (CC, Nombre, Apellido, Correo, Celular, Ciudad, Sexo) como se indica en el siguiente procedimiento: 
+				  			<h3 class="text-primary">Eliminación de registros</h3>
+							<p>Para eliminar un registro de una tabla en una base de datos, es necesario conocer la consulta a realizar, en este caso nuestra consulta tendria la siguiente estructura:</p>
+							<textarea id="code1">
+DELETE FROM nombre_tabla WHERE columna = valor;</textarea>
+							<p>Lo cual significa que queremos eliminar de la tabla (usuarios por ejemplo)  un registro siempre y cuando la columna (id por ejemplo) sea igual o tenga un valor determinado.</p>
+							<p>Para realizarlo en php debemos:
+								<ol>
+									<li>Tener realizada una previa conexion a la base de datos.</li>
+									<li>Ejecutar la consulta mediante preprare de PDO:
+										<p>
+											<textarea id="code2">
+$sentencia = $db->prepare("DELETE FROM usuarios WHERE id = :id_user");
+$sentencia->bindParam(':id_user',$_POST['id_user']);</textarea>
+										</p>
+									</li>
+									<li>Ejecutar la consulta:
+										<p>
+											<textarea id="code3">
+$sentencia->execute();</textarea>
+										</p>
+									</li>
+								</ol>
 							</p>
 							<p>
-						<tr>
-						<td colspan="1" class="img-header">
-							<img src="img/eliminacion.jpg" class="img" width="800" height="500">
-						</td>
-					</tr>
-							</p>
-
-							<p>
-							<textarea class="code">
-<?php
-
-
-		$conexion=mysqli_connect("localhost","root","","unad") or
-    die("Problemas con la conexión");
-if(isset($_POST['Buscar'])){
-
-
-  $registros=mysqli_query($conexion, "select Id,cc,Nombre,Apellido,Correo,Celular,Ciudad,Sexo from usuarios
-                        where cc='$_REQUEST[cc]' or Nombre='$_REQUEST[nombre]' or Correo='$_REQUEST[correo]' or Celular='$_REQUEST[celular]'or Sexo='$_REQUEST[sexo]'")or
-  die("Problemas en el select:".mysqli_error($conexion));
-if ($reg=mysqli_fetch_array($registros))
-
-{
-echo '<input type="text" name="id" value="'.$reg[0].'">';
-echo '<input type="text" name="cc" value="'.$reg[1].'">';
-echo '<input type="text" name="nombre" value="'.$reg[2].'">';
-echo '<input type="text" name="apellido" value="'.$reg[3].'">';
-echo '<input type="text" name="correo" value="'.$reg[4].'">';
-echo '<input type="text" name="celular" value="'.$reg[5].'">';
-echo '<input type="text" name="ciudad" value="'.$reg[6].'">';
-echo '<input type="text" name="sexo" value="'.$reg[7].'">';
-
-mysqli_close($conexion);
-}
-}
-?>
-							</textarea>
+								Una vez realizado esto se habrá eliminado el registro de la tabla que tuviera el id previamente obtenido mediante POST o GET, incluso directamente desde PHP; el codigo final seria el siguiente:
 							</p>
 							<p>
-							4.	El código para procedimiento de eliminación permite, realizar la búsqueda inicial y posteriormente su eliminación: 
+								<textarea id="code4">
+$id_user = $_GET['id_user'];
+$sentencia = $db->prepare("DELETE FROM usuarios WHERE id = :id_user");
+$sentencia->bindParam(':id_user',$id_user);									
+$sentencia->execute();</textarea>
 							</p>
-							<p>
-							<textarea class="code">
-<?php
-
-
-		$conexion=mysqli_connect("localhost","root","","unad") or
-    die("Problemas con la conexión");
-
-if(isset($_POST['Eliminar'])){
-	mysqli_query($conexion,"delete from usuarios where Id='$_REQUEST[id]'") or
-    die("Problemas en el select:".mysqli_error($conexion));
-  echo "Se efectuó el borrado .";
-	}
-
-?>
-						</textarea>
-						</p>
-						<p>
-						<tr>
-						<td colspan="1" class="img-header">
-							<img src="img/borrado.jpg" class="img" width="800" height="500">
-						</td>
-					</tr>
-					</p>
-					<p>
-					Todo el procedimiento quedaría así para su verificación:
-					</p>
-					<p>
-					<textarea class="code">
-					<!DOCTYPE html>
-
-<head>
-
-	<meta charset="utf-8">	
-	
-	<script type="text/javascript" src="banner/funcionesJS.js"></script>
-	<link href="style.css" rel="stylesheet">
-</head>
-
-<body onLoad="banner()">
-
-	
-
-<header id="encabezado" >
-
-		<hgroup>
-			<h1 id="title" style="width:700px"><a href="index.html" >Bases de datos en PHP
-</a> </h1>
-		</hgroup>
-		<img id="banner" src="" name="banner"  align="right"></img>
-	</header> 
-
-<div id="cuerpo">
-
-	<nav class="menu " >
-		<ul>
-			<li class="current"><a href="index.php">Inicio</a></li>
-			
-		</ul>
-	</nav>
-
- <section id="contenido">
-
-	<article class="hentry">
-
-		<header class="entry-header">
-			
-<figure >
-	
-		</header>
-
-		<div >
-			<form action="index.php" method="post">
-			Ingrese Cedula:
-			<input type="text" name="cc" ><br>
-			Ingrese Nombre:
-			<input type="text" name="nombre" ><br>
-			Ingrese Apellido:
-			<input type="text" name="apellido" ><br>
-			Ingrese Correo:
-			<input type="text" name="correo" ><br>
-			Ingrese Celular:
-			<input type="text" name="celular"><br>
-			Ingrese Ciudad:
-			<input type="text" name="ciudad" ><br>
-			Ingrese Sexo:
-			<input type="text" name="sexo" ><br>
-
-			<input type="submit" name="Guardar" value="Guardar" >
-			<input type="submit" name="Buscar" value="Buscar" >
-			<input type="submit" name="Eliminar" value="Eliminar" >
-			<input type="submit" name="Modificar" value="Modificar" >
-		</div> 	
-
-<?php
-
-
-		$conexion=mysqli_connect("localhost","root","","unad") or
-    die("Problemas con la conexión");
-if(isset($_POST['Guardar'])) {
-	
-mysqli_query($conexion,"insert into usuarios(cc,Nombre,Apellido,Direccion,Celular,Ciudad,Sexo) values 
-                       ('$_REQUEST[cc]','$_REQUEST[nombre]','$_REQUEST[apellido]','$_REQUEST[correo]','$_REQUEST[celular]','$_REQUEST[ciudad]')'$_REQUEST[sexo]',")
-  or die("Problemas en el select".mysqli_error($conexion));
-  echo "Registro Guardado.";
-  mysqli_close($conexion);
-}
-
-
-
-if(isset($_POST['Buscar'])){
-
-
-  $registros=mysqli_query($conexion, "select Id,cc,Nombre,Apellido,Correo,Celular,Ciudad,Sexo from usuarios
-                        where cc='$_REQUEST[cc]' or Nombre='$_REQUEST[nombre]' or Correo='$_REQUEST[correo]' or Celular='$_REQUEST[celular]'or Sexo='$_REQUEST[sexo]'")or
-  die("Problemas en el select:".mysqli_error($conexion));
-if ($reg=mysqli_fetch_array($registros))
-
-{
-
-
-	echo '<input type="text" name="id" value="'.$reg[0].'">';
-	echo '<input type="text" name="cc" value="'.$reg[1].'">';
-echo '<input type="text" name="nombre" value="'.$reg[2].'">';
-echo '<input type="text" name="apellido" value="'.$reg[3].'">';
-echo '<input type="text" name="correo" value="'.$reg[4].'">';
-echo '<input type="text" name="celular" value="'.$reg[5].'">';
-echo '<input type="text" name="ciudad" value="'.$reg[6].'">';
-echo '<input type="text" name="sexo" value="'.$reg[7].'">';
-
-mysqli_close($conexion);
-}
-}
-
-if(isset($_POST['Eliminar'])){
-	mysqli_query($conexion,"delete from usuarios where Id='$_REQUEST[id]'") or
-    die("Problemas en el select:".mysqli_error($conexion));
-  echo "Se efectuó el borrado .";
-	}
-?>
-
-		
-	</article>
-
-	
-	
-</section>
-
-
-</div> 
-	<footer id="footer" >
-		
-		<p>
-			© Copyright Todos los derechos reservados
-		</p>
-	</footer> 
-
-</body>
-</html>
-
-</textarea>
-
-
-
 				  		</div>
 				  	</div>
 				  </div>
@@ -374,6 +157,27 @@ if(isset($_POST['Eliminar'])){
 			</div>
 		</div>
 	</footer>
-	<script src="../js/scripts.js"></script>
+	<script>
+		var editor = CodeMirror.fromTextArea(document.getElementById("code1"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code4"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+	</script>
 </body>
 </html>
