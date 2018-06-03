@@ -77,7 +77,47 @@
 				  <div class="panel-body">
 				  	<div class="row">
 				  		<div class="col-md-12">
-							Texto
+							<h3 class="text-primary">Actualizar registros</h3>
+							<p>Para actualizar registros de una tabla en una base de datos, es necesario conocer la consulta a realizar, en este caso es esta:</p>
+							<textarea id="code1">
+UPDATE nombre_tabla
+SET columna1=value, columna2=value2,...
+WHERE columna=valor</textarea>
+							<p>Trabajaremos bajo el ejemplo de que queremos modificar el nombre y apellido del usuario con # de cedula 12223322.</p>
+							<p>Pasos a seguir:
+								<ol>
+									<li>Haber establecido conexion con el servidor MySQL.<br>Si no ha realizado la conexión puede revisar el siguiente material - <a href="connection.html">Conexión a una DB</a>.</li>
+									<li>
+										Preparar la consulta a realizar en PHP PDO:
+										<textarea id="code2">
+$sentencia = $db->prepare("UPDATE SET nombres = :nombres, apellidos = :apellidos WHERE cc = :cc");</textarea>
+									</li>
+									<li>Pasarle los valores a traves de la funcion bindParam:
+										<textarea id="code3">
+$sentencia->bindParam(':nombres',$nombres);
+$sentencia->bindParam(':apellidos',$apellidos);
+$sentencia->bindParam(':cc',$cc);</textarea>
+									</li>
+									<li>
+										Ejecutar la consulta:
+										<textarea id="code4">$sentencia->execute();</textarea>
+									</li>
+								</ol>
+							</p>
+							<p>Ya con esto habremos modificado un registro, el codigo final seria el siguiente:</p>
+							<textarea id="code5">
+$nombres = $_POST['nombres'];
+$apellidos = $_POST['apellidos'];
+$cc = $_POST['cc'];
+$sentencia = $db->prepare("UPDATE SET nombres = :nombres, apellidos = :apellidos WHERE cc = :cc");
+$sentencia->bindParam(':nombres',$nombres);
+$sentencia->bindParam(':apellidos',$apellidos);
+$sentencia->bindParam(':cc',$cc);
+if($sentencia->execute()){
+	echo 'Se han modificado los datos con exito.';
+}else{
+	echo 'No se han modificado los datos.';
+}</textarea>
 				  		</div>
 				  	</div>
 				  </div>
@@ -125,6 +165,32 @@
 			</div>
 		</div>
 	</footer>
-	<script src="../js/scripts.js"></script>
+	<script>
+		var editor = CodeMirror.fromTextArea(document.getElementById("code1"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code3"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code4"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+		var editor = CodeMirror.fromTextArea(document.getElementById("code5"), {
+		  lineNumbers: true,
+		  theme: 'icecoder',
+		  readOnly: true
+		});
+	</script>
 </body>
 </html>
